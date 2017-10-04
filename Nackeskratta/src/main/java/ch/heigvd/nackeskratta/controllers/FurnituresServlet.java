@@ -5,8 +5,11 @@
  */
 package ch.heigvd.nackeskratta.controllers;
 
+import ch.heigvd.nackeskratta.model.Furniture;
+import ch.heigvd.nackeskratta.services.FurnitureManager;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Remi
  */
-public class FurnitureServlet extends HttpServlet {
+public class FurnituresServlet extends HttpServlet {
+    
+    FurnitureManager furnitureManager = new FurnitureManager();
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -30,8 +35,9 @@ public class FurnitureServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 	
-	
+	Furniture furniture = furnitureManager.getRandomFurniture();	
+	request.setAttribute("furniture", furniture);		
+	request.getRequestDispatcher("/WEB-INF/furnitures.jsp").forward(request, response);
     }
-
-   
+    
 }

@@ -10,13 +10,21 @@ public class Furniture
    private Color color;
    private float price;
    
-   Furniture(String name, Category cat, Material mat, Color col, float price)
+   private String imageUrl;
+
+    public void setImageUrl(String imageUrl) {
+	this.imageUrl = imageUrl;
+    }
+   
+   public Furniture(String name, Category cat, Material mat, Color col, float price)
    {
       this.name = name;
       this.category = cat;
       this.material = mat;
       this.color = col;
       this.price = price;
+      
+      this.imageUrl = "img/" + category.toString().toLowerCase() + ".jpg";
    }
 
    public String getName()
@@ -67,5 +75,9 @@ public class Furniture
    public void setPrice(float price)
    {
       this.price = price;
+   }
+   
+   public String getImageUrl(){
+       return this.imageUrl;
    }
 }
