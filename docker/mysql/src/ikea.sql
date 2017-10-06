@@ -1,5 +1,8 @@
 DROP DATABASE IF EXISTS ikea;
 CREATE DATABASE ikea DEFAULT CHARACTER SET latin1 COLLATE latin1_general_cs;
+
+USE ikea;
+
 DROP TABLE IF EXISTS furnitures;
 DROP TABLE IF EXISTS material;
 DROP TABLE IF EXISTS category;
@@ -7,37 +10,39 @@ DROP TABLE IF EXISTS color;
 
 CREATE TABLE material(
 	id INT,
-	name VARCHAR() NOT NULL,
+	name VARCHAR(40) NOT NULL,
 
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE category(
 	id INT,
-	name VARCHAR() NOT NULL,
+	name VARCHAR(40) NOT NULL,
 
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE color(
 	id INT,
-	name VARCHAR() NOT NULL,
+	name VARCHAR(40) NOT NULL,
 
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE furnitures(
-	id INT AUTO_INCREMENT,
-	name VARCHAR() NOT NULL,
-	colorID INT NOT NULL,
-	materialID INT NOT NULL,
-	categoryID INT NOT NULL,
-	price DOUBLE NOT NULL,
-
-	PRIMARY KEY (id),
-	FOREIGN KEY (colorID) REFERENCES color(id),
-    FOREIGN KEY (materialID) REFERENCES material(id),
-    FOREIGN KEY (categoryID) REFERENCES category(id)
+CREATE TABLE furnitures (
+    id INT AUTO_INCREMENT,
+    name VARCHAR(40) NOT NULL,
+    colorID INT NOT NULL,
+    materialID INT NOT NULL,
+    categoryID INT NOT NULL,
+    price DOUBLE NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (colorID)
+        REFERENCES color (id),
+    FOREIGN KEY (materialID)
+        REFERENCES material (id),
+    FOREIGN KEY (categoryID)
+        REFERENCES category (id)
 );
 
 INSERT INTO material (id,name) VALUES(1,'Wood');
