@@ -1,0 +1,5 @@
+cd ../docker/mysql/
+
+docker build -t amt/mysql .
+
+docker run --name bdd -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 amt/mysql
