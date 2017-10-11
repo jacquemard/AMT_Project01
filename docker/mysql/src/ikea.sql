@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS ikea;
-CREATE DATABASE ikea DEFAULT CHARACTER SET latin1 COLLATE latin1_general_cs;
+CREATE DATABASE ikea DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 USE ikea;
 
@@ -47,7 +47,7 @@ CREATE TABLE furnitures (
 
 INSERT INTO material (id,name) VALUES(1,'Wood');
 INSERT INTO material (id,name) VALUES(2,'Metal');
-INSERT INTO material (id,name) VALUES(3,'Platic');
+INSERT INTO material (id,name) VALUES(3,'Plastic');
 INSERT INTO material (id,name) VALUES(4,'Horse');
 
 INSERT INTO category (id,name) VALUES(1,'Meatballs');

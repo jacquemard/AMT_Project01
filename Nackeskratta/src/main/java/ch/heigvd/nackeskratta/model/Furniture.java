@@ -2,82 +2,71 @@ package ch.heigvd.nackeskratta.model;
 
 import java.awt.Color;
 
-public class Furniture
-{
-   private String name;
-   private Category category;
-   private Material material;
-   private Color color;
-   private float price;
-   
-   private String imageUrl;
+public class Furniture {
 
-    public void setImageUrl(String imageUrl) {
-	this.imageUrl = imageUrl;
-    }
-   
-   public Furniture(String name, Category cat, Material mat, Color col, float price)
-   {
-      this.name = name;
-      this.category = cat;
-      this.material = mat;
-      this.color = col;
-      this.price = price;
-      
-      this.imageUrl = "img/" + category.toString().toLowerCase() + ".jpg";
-   }
+	private String name;
+	private Category category;
+	private Material material;
+	private Color color;
+	private double price;
 
-   public String getName()
-   {
-      return name;
-   }
+	private String imageUrl;
 
-   public Category getCategory()
-   {
-      return category;
-   }
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 
-   public Material getMaterial()
-   {
-      return material;
-   }
+	public Furniture(String name, Category cat, Material mat, Color col, double price) {
+		this.name = name;
+		this.category = cat;
+		this.material = mat;
+		this.color = col;
+		this.price = price;
 
-   public Color getColor()
-   {
-      return color;
-   }
+		this.imageUrl = "img/" + category.toString().toLowerCase() + ".jpg";
+	}
 
-   public float getPrice()
-   {
-      return price;
-   }
+	public String getName() {
+		return name;
+	}
 
-   public void setName(String name)
-   {
-      this.name = name;
-   }
+	public Category getCategory() {
+		return category;
+	}
 
-   public void setCategory(Category category)
-   {
-      this.category = category;
-   }
+	public Material getMaterial() {
+		return material;
+	}
 
-   public void setMaterial(Material material)
-   {
-      this.material = material;
-   }
+	public Color getColor() {
+		return color;
+	}
 
-   public void setColor(Color color)
-   {
-      this.color = color;
-   }
+	public double getPrice() {
+		return price;
+	}
 
-   public void setPrice(float price)
-   {
-      this.price = price;
-   }
-   
-   public String getImageUrl(){
-       return this.imageUrl;
-   }
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public void setMaterial(Material material) {
+		this.material = material;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public String getImageUrl() {
+		return this.imageUrl;
+	}
 }
