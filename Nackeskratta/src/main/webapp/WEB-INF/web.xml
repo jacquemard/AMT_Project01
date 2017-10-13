@@ -4,9 +4,17 @@
         <servlet-name>FurnitureServlet</servlet-name>
         <servlet-class>ch.heigvd.nackeskratta.controllers.FurnituresServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GeneratorServlet</servlet-name>
+        <servlet-class>ch.heigvd.nackeskratta.controllers.GeneratorServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FurnitureServlet</servlet-name>
         <url-pattern>/furnitures</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GeneratorServlet</servlet-name>
+        <url-pattern>/generator</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
