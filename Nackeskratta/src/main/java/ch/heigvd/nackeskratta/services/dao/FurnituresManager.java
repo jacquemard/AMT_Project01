@@ -14,47 +14,51 @@ import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
-
 @Stateless
 public class FurnituresManager implements FurnituresManagerLocal {
-    
+
 	@Resource(lookup = "java:/jdbc/ikea")
 	private DataSource dataSource;
-	
+
 	@Override
-    public Furniture getRandomFurniture(){
+	public Furniture getRandomFurniture() {
 		Furniture furniture = null;
-		
+
+		Connection connection = null;
 		try {
-			Connection connection = dataSource.getConnection();
+			connection = dataSource.getConnection();
 			PreparedStatement statement = connection.prepareStatement("SELECT * FROM furnitures "
 					+ "INNER JOIN color ON colorID = color.id "
 					+ "INNER JOIN material ON materialID = material.id "
 					+ "INNER JOIN category ON categoryID = category.id "
 					+ "ORDER BY RAND() "
 					+ "LIMIT 10");
-			
+
 			ResultSet results = statement.executeQuery();
-			
-			while(results.next()){ //Pour chaque enregistrement
+
+			while (results.next()) { //Pour chaque enregistrement
 				String name = results.getString("name");
-				Color color = Color.getColor(results.getString("color.name"));				
-				Material material = Material.valueOf(results.getString("material.name").toUpperCase());					
-				Category category = Category.valueOf(results.getString("category.name").toUpperCase());				
+				Color color = Color.getColor(results.getString("color.name"));
+				Material material = Material.valueOf(results.getString("material.name").toUpperCase());
+				Category category = Category.valueOf(results.getString("category.name").toUpperCase());
 				double price = results.getDouble("price");
-				
-				furniture = new Furniture(name, category, material, color, price);				
-				break;				
+
+				furniture = new Furniture(name, category, material, color, price);
+				break;
 			}
-			
+
 		} catch (SQLException ex) {
 			Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
-		
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
 		return furniture;
-    }
-	
-	
-    
+	}
+
 }
