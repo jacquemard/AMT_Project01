@@ -41,9 +41,29 @@ public class FurnituresServlet extends HttpServlet {
 		if (pageStr != null && !pageStr.isEmpty()) {
 			page = Integer.parseInt(request.getParameter("page")) - 1;
 		}
-		
-		LinkedList<Furniture> furnitures = furnitureManager.getFurnitures(page);
+
+		final int NUMBER_PER_PAGE = 20;
+
+		// Meubles
+		LinkedList<Furniture> furnitures = furnitureManager.getFurnitures(page, 20);
 		request.setAttribute("furnitures", furnitures);
+
+		// Pages
+		int numberOfFurnituresTot = furnitureManager.getNumberOfFurniture();
+		int numberOfPages = (int) Math.ceil(numberOfFurnituresTot / NUMBER_PER_PAGE);
+
+		int firstPage = page - 3;
+		if(firstPage < 0)
+			firstPage = 0;
+		int lastPage = page + 3;
+		if(lastPage > numberOfPages - 1)
+			lastPage = numberOfPages -1 ;
+		
+		request.setAttribute("firstPage", firstPage + 1);
+		request.setAttribute("lastPage", lastPage + 1);
+		request.setAttribute("currentPage", page + 1);
+
+		// ---
 		request.getRequestDispatcher("/WEB-INF/furnitures.jsp").forward(request, response);
 	}
 

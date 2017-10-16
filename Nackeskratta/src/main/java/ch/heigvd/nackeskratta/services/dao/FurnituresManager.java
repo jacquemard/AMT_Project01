@@ -63,15 +63,14 @@ public class FurnituresManager implements FurnituresManagerLocal {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page Le numéro de la page, commencant par 0
 	 * @return 20 meubles
 	 */
 	@Override
-	public LinkedList<Furniture> getFurnitures(int page) {
+	public LinkedList<Furniture> getFurnitures(int page, int numberPerPage) {
 		LinkedList<Furniture> furnitures = new LinkedList<Furniture>();
-		final int NB_PER_PAGE = 4 * 5;
-		
+
 		Connection connection = null;
 		try {
 			connection = dataSource.getConnection();
@@ -79,7 +78,7 @@ public class FurnituresManager implements FurnituresManagerLocal {
 					+ "INNER JOIN color ON colorID = color.id "
 					+ "INNER JOIN material ON materialID = material.id "
 					+ "INNER JOIN category ON categoryID = category.id "
-					+ "LIMIT " + NB_PER_PAGE * page + ", " + NB_PER_PAGE);
+					+ "LIMIT " + numberPerPage * page + ", " + numberPerPage);
 
 			ResultSet results = statement.executeQuery();
 
@@ -91,7 +90,6 @@ public class FurnituresManager implements FurnituresManagerLocal {
 				double price = results.getDouble("price");
 
 				furnitures.add(new Furniture(name, category, material, color, price));
-				System.out.println("test2");
 			}
 
 		} catch (SQLException ex) {
@@ -108,4 +106,30 @@ public class FurnituresManager implements FurnituresManagerLocal {
 		return furnitures;
 	}
 
+	@Override
+	public int getNumberOfFurniture() {
+		Connection connection = null;
+		int numberOfFurnitures = 0;
+		try {
+			connection = dataSource.getConnection();
+			PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) FROM furnitures ");
+
+			ResultSet results = statement.executeQuery();
+
+			results.next();
+			numberOfFurnitures = results.getInt(1);
+
+		} catch (SQLException ex) {
+			Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+		return numberOfFurnitures;
+	}
 }

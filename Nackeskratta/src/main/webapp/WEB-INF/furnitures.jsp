@@ -53,8 +53,8 @@
 	<div class="container">
 
 	    <!-- Page Heading -->
-	    <h1 class="my-4">Page Heading
-		<small>Secondary Text</small>
+	    <h1 class="my-4">Furnitures
+		<small>List</small>
 	    </h1>
 
 	    <div class="row">
@@ -66,7 +66,10 @@
 				<h4 class="card-title">
 				    <a href="#">${furniture.name}</a>
 				</h4>
-				<p class="card-text"></p>
+				<p class="card-text">Category : ${furniture.category}</p>
+				<p class="card-text">Color : ${furniture.color}</p>
+				<p class="card-text">Material : ${furniture.material}</p>
+				<p class="card-text">Price : ${furniture.price}</p>
 			    </div>
 			</div>
 		    </div>
@@ -76,27 +79,28 @@
 
 	    <!-- Pagination -->
 	    <ul class="pagination justify-content-center">
-		<li class="page-item">
-		    <a class="page-link" href="#" aria-label="Previous">
-			<span aria-hidden="true">&laquo;</span>
-			<span class="sr-only">Previous</span>
-		    </a>
-		</li>
-		<li class="page-item">
-		    <a class="page-link" href="#">1</a>
-		</li>
-		<li class="page-item">
-		    <a class="page-link" href="#">2</a>
-		</li>
-		<li class="page-item">
-		    <a class="page-link" href="#">3</a>
-		</li>
-		<li class="page-item">
-		    <a class="page-link" href="#" aria-label="Next">
-			<span aria-hidden="true">&raquo;</span>
-			<span class="sr-only">Next</span>
-		    </a>
-		</li>
+		<c:if test="${requestScope.currentPage >= requestScope.firstPage}" >
+		    <li class="page-item">
+			<a class="page-link" href="?page=${requestScope.currentPage - 1}" aria-label="Previous">
+			    <span aria-hidden="true">&laquo;</span>
+			    <span class="sr-only">Previous</span>
+			</a>
+		    </li>
+		</c:if>
+		<c:forEach var="p" begin="${requestScope.firstPage}" end="${requestScope.lastPage}" >
+		    <li class="page-item">
+			<a class="page-link" href="?page=${p}">${p}</a>
+		    </li>
+		</c:forEach>
+
+		<c:if test="${requestScope.currentPage < requestScope.lastPage}" >
+		    <li class="page-item">
+			<a class="page-link" href="?page=${requestScope.currentPage + 1}" aria-label="Next">
+			    <span aria-hidden="true">&raquo;</span>
+			    <span class="sr-only">Next</span>
+			</a>
+		    </li>
+		</c:if>
 	    </ul>
 
 	</div>

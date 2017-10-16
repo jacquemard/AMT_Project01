@@ -7,5 +7,6 @@ import javax.ejb.Local;
 @Local
 public interface FurnituresManagerLocal {
 	public Furniture getRandomFurniture();
-	public LinkedList<Furniture> getFurnitures(int page);
+	public LinkedList<Furniture> getFurnitures(int page, int numberPerPage);
+	public int getNumberOfFurniture();
 }
