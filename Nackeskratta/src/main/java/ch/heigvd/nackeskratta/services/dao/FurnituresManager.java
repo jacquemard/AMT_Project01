@@ -37,13 +37,14 @@ public class FurnituresManager implements FurnituresManagerLocal {
 			ResultSet results = statement.executeQuery();
 
 			while (results.next()) { //Pour chaque enregistrement
+				long id = results.getLong("id");
 				String name = results.getString("name");
 				Color color = Color.getColor(results.getString("color.name"));
 				Material material = Material.valueOf(results.getString("material.name").toUpperCase());
 				Category category = Category.valueOf(results.getString("category.name").toUpperCase());
 				double price = results.getDouble("price");
 
-				furniture = new Furniture(name, category, material, color, price);
+				furniture = new Furniture(id, name, category, material, color, price);
 				break;
 			}
 

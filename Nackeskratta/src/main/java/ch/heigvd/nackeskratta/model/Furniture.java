@@ -9,6 +9,7 @@ public class Furniture {
 	private Material material;
 	private Color color;
 	private double price;
+	private long id;
 
 	private String imageUrl;
 
@@ -16,7 +17,7 @@ public class Furniture {
 		this.imageUrl = imageUrl;
 	}
 
-	public Furniture(String name, Category cat, Material mat, Color col, double price) {
+	public Furniture(long id, String name, Category cat, Material mat, Color col, double price) {
 		this.name = name;
 		this.category = cat;
 		this.material = mat;
@@ -24,6 +25,7 @@ public class Furniture {
 		this.price = price;
 
 		this.imageUrl = "img/" + category.toString().toLowerCase() + ".jpg";
+		this.id = id;
 	}
 
 	public String getName() {
@@ -69,4 +71,13 @@ public class Furniture {
 	public String getImageUrl() {
 		return this.imageUrl;
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 }
