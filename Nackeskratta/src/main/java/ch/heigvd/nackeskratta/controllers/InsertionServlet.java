@@ -1,6 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ch.heigvd.nackeskratta.controllers;
 
-import ch.heigvd.nackeskratta.model.Furniture;
 import ch.heigvd.nackeskratta.services.FurnitureManager;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,10 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Nadir Benallal
+ * @author brofm_000
  */
-public class GeneratorServlet extends HttpServlet {
-    
+public class InsertionServlet extends HttpServlet {
     FurnitureManager furnitureManager = new FurnitureManager();
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -31,6 +34,6 @@ public class GeneratorServlet extends HttpServlet {
             throws ServletException, IOException {
         //Furniture furniture = furnitureManager.getRandomFurniture();	
 	//request.setAttribute("furniture", furniture);		
-	request.getRequestDispatcher("/WEB-INF/generate.jsp").forward(request, response);
+	request.getRequestDispatcher("/WEB-INF/insert.jsp").forward(request, response);
     }
 }
