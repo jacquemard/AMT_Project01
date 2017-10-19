@@ -165,6 +165,7 @@ public class FurnituresManager implements FurnituresManagerLocal {
 		}
 	}
 
+	@Override
 	public void insertRandomFurniture() {
 		// On prends 2 mots aléatoire qu'on accole les uns aux autres
 		String word1 = words[random.nextInt(words.length)];
@@ -182,7 +183,8 @@ public class FurnituresManager implements FurnituresManagerLocal {
 		
 	}
 
-	private void insertFurniture(String name, int materialId, int categoryId, double price, int colorId) {
+	@Override
+	public void insertFurniture(String name, int materialId, int categoryId, double price, int colorId) {
 		Connection connection = null;
 		try {
 			connection = dataSource.getConnection();
