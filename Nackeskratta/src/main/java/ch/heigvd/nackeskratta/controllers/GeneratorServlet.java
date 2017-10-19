@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Nadir Benallal
  */
 public class GeneratorServlet extends HttpServlet {
-
+	
 	@EJB
 	FurnituresManagerLocal furnitureManager;
 

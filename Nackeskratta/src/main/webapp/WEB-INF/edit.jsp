@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AMT Ikea Project</title>
+    <title>4 Col Portfolio - Start Bootstrap Template</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -52,12 +52,30 @@
     <div class="container">
 
       <!-- Page Heading -->
-      <h1 class="my-4">Data Generator</h1>
+      <h1 class="my-4">Editor
+        <small>${requestScope.furniture.name}</small>
+      </h1>
 
-      <form method="POST">
+      <form>
         <div class="form-group">
-          <label for="nb_elements">Number of elements to generate</label>
-          <input type="number" value="0" class="form-control" name="nb_elements" id="nb_elements">
+          <label for="name">Name</label>
+          <input type="text" value="${requestScope.furniture.name}" class="form-control" id="name">
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <input type="text" value="${requestScope.furniture.category}" class="form-control" id="category">
+        </div>
+        <div class="form-group">
+          <label for="material">Material</label>
+          <input type="text" value="${requestScope.furniture.material}" class="form-control" id="material">
+        </div>
+        <div class="form-group">
+          <label for="color">Color</label>
+          <input type="text" value="${requestScope.furniture.color}" class="form-control" id="color">
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="number" value="${requestScope.furniture.price}" class="form-control" id="price">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form> 
