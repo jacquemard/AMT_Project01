@@ -11,4 +11,7 @@ public interface FurnituresManagerLocal {
 	public int getNumberOfFurniture();
 
 	public void generate(int nbToGenerate);
+	
+	public void insertRandomFurniture() ;
+	public void insertFurniture(String name, int materialId, int categoryId, double price, int colorId);
 }
