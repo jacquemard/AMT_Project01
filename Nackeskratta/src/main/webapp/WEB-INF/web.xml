@@ -8,6 +8,10 @@
         <servlet-name>GeneratorServlet</servlet-name>
         <servlet-class>ch.heigvd.nackeskratta.controllers.GeneratorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateServlet</servlet-name>
+        <servlet-class>ch.heigvd.nackeskratta.controllers.CreateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FurnitureServlet</servlet-name>
         <url-pattern>/furnitures</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>GeneratorServlet</servlet-name>
         <url-pattern>/generator</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateServlet</servlet-name>
+        <url-pattern>/create</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

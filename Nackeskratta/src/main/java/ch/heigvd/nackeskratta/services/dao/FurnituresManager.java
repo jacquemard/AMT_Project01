@@ -65,6 +65,7 @@ public class FurnituresManager implements FurnituresManagerLocal {
 	/**
 	 *
 	 * @param page Le numéro de la page, commencant par 0
+	 * @param numberPerPage le nombre de meuble par page
 	 * @return 20 meubles
 	 */
 	@Override
