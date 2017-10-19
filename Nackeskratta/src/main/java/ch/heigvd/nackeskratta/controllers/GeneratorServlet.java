@@ -1,6 +1,5 @@
 package ch.heigvd.nackeskratta.controllers;
 
-import ch.heigvd.nackeskratta.model.Furniture;
 import ch.heigvd.nackeskratta.services.dao.FurnituresManagerLocal;
 import java.io.IOException;
 import javax.ejb.EJB;
@@ -30,8 +29,33 @@ public class GeneratorServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Furniture furniture = furnitureManager.getRandomFurniture();
-		request.setAttribute("furniture", furniture);
+
+		request.getRequestDispatcher("/WEB-INF/generate.jsp").forward(request, response);
+	}
+
+	// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+	/**
+	 * Handles the HTTP <code>POST</code> method.
+	 *
+	 * @param request servlet request
+	 * @param response servlet response
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException if an I/O error occurs
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// On lance la génération
+		try {
+			int nbToGenerate = Integer.parseInt(request.getParameter("nb_elements"));
+
+			if (nbToGenerate < 2000000) { //Nombre max d'élément : 2 millions
+				furnitureManager.generate(nbToGenerate);
+			}
+
+		} catch (NumberFormatException e) {
+			//On fait rien, l'utilisateur a entrée un nombre trop grand
+		}
 		request.getRequestDispatcher("/WEB-INF/generate.jsp").forward(request, response);
 	}
 }

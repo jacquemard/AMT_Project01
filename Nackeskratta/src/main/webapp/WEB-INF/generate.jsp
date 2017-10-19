@@ -56,10 +56,10 @@
         <small>Secondary Text</small>
       </h1>
 
-      <form>
+      <form method="POST">
         <div class="form-group">
           <label for="nb_elements">Number of elements to generate</label>
-          <input type="number" value="0" class="form-control" id="nb_elements">
+          <input type="number" value="0" class="form-control" name="nb_elements" id="nb_elements">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form> 
