@@ -79,7 +79,7 @@
 
 	    <!-- Pagination -->
 	    <ul class="pagination justify-content-center">
-		<c:if test="${requestScope.currentPage >= requestScope.firstPage}" >
+		<c:if test="${requestScope.currentPage > requestScope.firstPage}" >
 		    <li class="page-item">
 			<a class="page-link" href="?page=${requestScope.currentPage - 1}" aria-label="Previous">
 			    <span aria-hidden="true">&laquo;</span>
