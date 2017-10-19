@@ -23,20 +23,34 @@ public class InsertionServlet extends HttpServlet {
 	@EJB
 	FurnituresManagerLocal furnitureManager;
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //Furniture furniture = furnitureManager.getRandomFurniture();	
-	//request.setAttribute("furniture", furniture);		
-	request.getRequestDispatcher("/WEB-INF/insert.jsp").forward(request, response);
-    }
+	// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+	/**
+	 * Handles the HTTP <code>GET</code> method.
+	 *
+	 * @param request servlet request
+	 * @param response servlet response
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException if an I/O error occurs
+	 */
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/insert.jsp").forward(request, response);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//On récupère les infos
+		String name = request.getParameter("name");
+		int colorId = Integer.parseInt(request.getParameter("color"));
+		int materialId = Integer.parseInt(request.getParameter("material"));
+		int categoryId = Integer.parseInt(request.getParameter("category"));
+		double price = Integer.parseInt(request.getParameter("price"));
+		
+		furnitureManager.insertFurniture(name, materialId, categoryId, price, colorId);
+		
+		request.getRequestDispatcher("/WEB-INF/insert.jsp").forward(request, response);
+	}
+	
+	
 }
