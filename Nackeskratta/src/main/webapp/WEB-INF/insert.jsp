@@ -62,8 +62,8 @@
           <input type="text" placeholder="Nackeskratta" class="form-control" id="name">
         </div>
         
+        <label class="form-contol-label" for="category">Category</label>
         <div class="form-group">
-          <label class="form-contol-label" for="category">Category</label>
           <div class="btn-group" data-toggle="buttons" id="category">
             <label class="btn btn-secondary active">
               <input type="radio" name="bed" id="cat_bed" autocomplete="off" value="1" checked> Bed
@@ -83,8 +83,8 @@
           </div>
         </div>
 
+        <label for="material">Material</label>
         <div class="form-group">
-          <label for="material">Material</label>
           <div class="btn-group" data-toggle="buttons" id="material">
             <label class="btn btn-secondary active">
               <input type="radio" name="wood" id="mat_wood" autocomplete="off" value="1" checked> Wood
@@ -101,8 +101,8 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="color">Color</label>
+        <label for="color">Color</label>
+        <div class="form-group">          
           <div class="btn-group" data-toggle="buttons" id="color">
             <label class="btn btn-secondary active">
               <input type="radio" name="black" id="col_black" autocomplete="off" value="1" checked> Black
