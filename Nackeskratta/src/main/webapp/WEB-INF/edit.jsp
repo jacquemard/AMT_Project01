@@ -126,11 +126,16 @@
 
         <div class="form-group">
           <button type="submit" class="btn btn-default">Submit</button>
-          <button type="button" class="btn btn-danger">Delete</button>
         </div>
         
       </form>
       <!-- /.row -->
+
+      <form method="POST">
+        <div class="form-group">
+          <button type="button" class="btn btn-danger">Delete</button>
+        </div>
+      </form>
 
     </div>
     <!-- /.container -->

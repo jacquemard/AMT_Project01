@@ -62,7 +62,7 @@ public class FurnituresServlet extends HttpServlet {
 		request.setAttribute("firstPage", firstPage + 1);
 		request.setAttribute("lastPage", lastPage + 1);
 		request.setAttribute("currentPage", page + 1);
-
+                
 		// ---
 		request.getRequestDispatcher("/WEB-INF/furnitures.jsp").forward(request, response);
 	}
