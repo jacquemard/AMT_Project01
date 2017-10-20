@@ -222,7 +222,7 @@ public class FurnituresManager implements FurnituresManagerLocal {
 							+ "colorID = " + colorId + " "
                                                         + "WHERE id = " + id + ";");
 
-			boolean ok = statement.execute();
+			statement.execute();
 
 		} catch (SQLException ex) {
 			Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -246,7 +246,7 @@ public class FurnituresManager implements FurnituresManagerLocal {
 					.prepareStatement("DELETE FROM furnitures "
 							+ "WHERE id = " + id + ";");
 
-			boolean ok = statement.execute();
+			statement.execute();
 
 		} catch (SQLException ex) {
 			Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
