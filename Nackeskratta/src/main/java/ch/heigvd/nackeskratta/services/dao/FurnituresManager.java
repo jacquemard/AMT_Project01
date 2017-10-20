@@ -207,4 +207,57 @@ public class FurnituresManager implements FurnituresManagerLocal {
 		}
 		return furniture;
 	}
+
+    @Override
+    public void updateFurniture(long id, String name, int materialId, int categoryId, double price, int colorId) {
+        Connection connection = null;
+		try {
+			connection = dataSource.getConnection();
+			PreparedStatement statement = connection
+					.prepareStatement("UPDATE furnitures SET "
+							+ "name = '" + name + "',"
+							+ "materialID = " + materialId + ","
+							+ "categoryID = " + categoryId + ","
+							+ "price = " + price + ","
+							+ "colorID = " + colorId + " "
+                                                        + "WHERE id = " + id + ";");
+
+			boolean ok = statement.execute();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+    }
+
+    @Override
+    public void deleteFurniture(long id) {
+        Connection connection = null;
+		try {
+			connection = dataSource.getConnection();
+			PreparedStatement statement = connection
+					.prepareStatement("DELETE FROM furnitures "
+							+ "WHERE id = " + id + ";");
+
+			boolean ok = statement.execute();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+    }
 }

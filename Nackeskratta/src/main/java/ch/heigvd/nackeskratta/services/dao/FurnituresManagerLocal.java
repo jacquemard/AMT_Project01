@@ -14,4 +14,8 @@ public interface FurnituresManagerLocal {
 	
 	public void insertRandomFurniture() ;
 	public void insertFurniture(String name, int materialId, int categoryId, double price, int colorId);
+        
+        public void updateFurniture(long id, String name, int materialId, int categoryId, double price, int colorId);
+        
+        public void deleteFurniture(long id);
 }
