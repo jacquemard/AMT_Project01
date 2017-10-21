@@ -26,7 +26,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GeneratorServlet</servlet-name>
-        <url-pattern>/generator</url-pattern>
+        <url-pattern>/generate</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EditorServlet</servlet-name>
