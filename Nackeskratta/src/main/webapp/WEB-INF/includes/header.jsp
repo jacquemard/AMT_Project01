@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>4 Col Portfolio - Start Bootstrap Template</title>
+    <title>Nackeskratta - Manage Furnitures easily</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
