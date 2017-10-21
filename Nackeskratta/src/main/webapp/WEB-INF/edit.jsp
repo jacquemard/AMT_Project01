@@ -129,16 +129,11 @@
 
         <div class="form-group">
           <button type="submit" class="btn btn-default">Submit</button>
+          <a href="delete?id=${requestScope.furniture.id}"><button type="button" class="btn btn-danger">Delete</button></a>
         </div>
         
       </form>
       <!-- /.row -->
-
-      <form method="POST">
-        <div class="form-group">
-          <button type="button" class="btn btn-danger">Delete</button>
-        </div>
-      </form>
 
     </div>
     <!-- /.container -->
