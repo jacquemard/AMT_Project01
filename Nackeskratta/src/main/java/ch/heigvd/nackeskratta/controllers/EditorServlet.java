@@ -29,16 +29,16 @@ public class EditorServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-            
-                long id = Long.parseLong(request.getParameter("id"));
-                String name = request.getParameter("name");
+
+		long id = Long.parseLong(request.getParameter("id"));
+		String name = request.getParameter("name");
 		int colorId = Integer.parseInt(request.getParameter("color"));
 		int materialId = Integer.parseInt(request.getParameter("material"));
 		int categoryId = Integer.parseInt(request.getParameter("category"));
-		double price = Integer.parseInt(request.getParameter("price"));
-		
+		double price = Double.parseDouble(request.getParameter("price"));
+
 		furnitureManager.updateFurniture(id, name, materialId, categoryId, price, colorId);
-            
+
 		displayRespond(request, response);
 	}
 
@@ -60,11 +60,11 @@ public class EditorServlet extends HttpServlet {
 	private void displayRespond(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//On affiche à partir de l'id passé en paramètre
 		long id = Long.parseLong(request.getParameter("id"));
-		
+
 		Furniture furniture = furnitureManager.getFurnitureById(id);
 		request.setAttribute("furniture", furniture);
-		
+
 		request.getRequestDispatcher("/WEB-INF/edit.jsp").forward(request, response);
 	}
-        
+
 }
