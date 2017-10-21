@@ -32,6 +32,9 @@
       <li class="nav-item">
           <a class="nav-link" href="insert">Create Furniture</a>
       </li>
+      <li class="nav-item">
+          <a class="nav-link" href="generate">Generate Furnitures</a>
+      </li>
         </ul>
     </div>
       </div>
