@@ -29,7 +29,16 @@ public class EditorServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+            
+                long id = Long.parseLong(request.getParameter("id"));
+                String name = request.getParameter("name");
+		int colorId = Integer.parseInt(request.getParameter("color"));
+		int materialId = Integer.parseInt(request.getParameter("material"));
+		int categoryId = Integer.parseInt(request.getParameter("category"));
+		double price = Integer.parseInt(request.getParameter("price"));
+		
+		furnitureManager.updateFurniture(id, name, materialId, categoryId, price, colorId);
+            
 		displayRespond(request, response);
 	}
 

@@ -17,8 +17,9 @@ public class Furniture {
 		this.imageUrl = imageUrl;
 	}
 
-	public Furniture(String name, Category cat, Material mat, Color col, double price) {
-		this.name = name;
+	public Furniture(long id, String name, Category cat, Material mat, Color col, double price) {
+		this.id = id;
+                this.name = name;
 		this.category = cat;
 		this.material = mat;
 		this.color = col;
