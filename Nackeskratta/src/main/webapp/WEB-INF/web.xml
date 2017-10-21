@@ -16,9 +16,13 @@
         <servlet-name>InsertionServlet</servlet-name>
         <servlet-class>ch.heigvd.nackeskratta.controllers.InsertionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeletionServlet</servlet-name>
+        <servlet-class>ch.heigvd.nackeskratta.controllers.DeletionServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FurnitureServlet</servlet-name>
-        <url-pattern></url-pattern>
+        <url-pattern/>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GeneratorServlet</servlet-name>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>InsertionServlet</servlet-name>
         <url-pattern>/insert</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletionServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

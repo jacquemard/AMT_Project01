@@ -4,6 +4,7 @@ import java.awt.Color;
 
 public class Furniture {
 
+        private long id;   
 	private String name;
 	private Category category;
 	private Material material;
@@ -16,8 +17,9 @@ public class Furniture {
 		this.imageUrl = imageUrl;
 	}
 
-	public Furniture(String name, Category cat, Material mat, Color col, double price) {
-		this.name = name;
+	public Furniture(long id, String name, Category cat, Material mat, Color col, double price) {
+		this.id = id;
+                this.name = name;
 		this.category = cat;
 		this.material = mat;
 		this.color = col;
@@ -26,6 +28,10 @@ public class Furniture {
 		this.imageUrl = "img/" + category.toString().toLowerCase() + ".jpg";
 	}
 
+        public long getId() {
+            return id;
+        }
+        
 	public String getName() {
 		return name;
 	}
@@ -45,6 +51,10 @@ public class Furniture {
 	public double getPrice() {
 		return price;
 	}
+        
+        public void setId(long id) {
+            this.id = id;
+        }
 
 	public void setName(String name) {
 		this.name = name;

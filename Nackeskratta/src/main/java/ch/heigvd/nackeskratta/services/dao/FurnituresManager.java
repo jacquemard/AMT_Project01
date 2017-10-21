@@ -44,47 +44,6 @@ public class FurnituresManager implements FurnituresManagerLocal {
 		words = lines.toArray(new String[0]);
 	}
 
-	@Override
-	public Furniture getRandomFurniture() {
-		Furniture furniture = null;
-
-		Connection connection = null;
-		try {
-			connection = dataSource.getConnection();
-			PreparedStatement statement = connection.prepareStatement("SELECT * FROM furnitures "
-					+ "INNER JOIN color ON colorID = color.id "
-					+ "INNER JOIN material ON materialID = material.id "
-					+ "INNER JOIN category ON categoryID = category.id "
-					+ "ORDER BY RAND() "
-					+ "LIMIT 10");
-
-			ResultSet results = statement.executeQuery();
-
-			while (results.next()) { //Pour chaque enregistrement
-				String name = results.getString("name");
-				Color color = Color.getColor(results.getString("color.name"));
-				Material material = Material.valueOf(results.getString("material.name").toUpperCase());
-				Category category = Category.valueOf(results.getString("category.name").toUpperCase());
-				double price = results.getDouble("price");
-
-				furniture = new Furniture(name, category, material, color, price);
-				break;
-			}
-
-		} catch (SQLException ex) {
-			Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
-		if (connection != null) {
-			try {
-				connection.close();
-			} catch (SQLException ex) {
-				Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		}
-		return furniture;
-	}
-
 	/**
 	 *
 	 * @param page Le numéro de la page, commencant par 0
@@ -106,13 +65,14 @@ public class FurnituresManager implements FurnituresManagerLocal {
 			ResultSet results = statement.executeQuery();
 
 			while (results.next()) { //Pour chaque enregistrement
+                                long id = results.getLong("id");
 				String name = results.getString("name");
 				Color color = Color.getColor(results.getString("color.name"));
 				Material material = Material.valueOf(results.getString("material.name").toUpperCase());
 				Category category = Category.valueOf(results.getString("category.name").toUpperCase());
 				double price = results.getDouble("price");
 
-				furnitures.add(new Furniture(name, category, material, color, price));
+				furnitures.add(new Furniture(id, name, category, material, color, price));
 			}
 
 		} catch (SQLException ex) {
@@ -160,7 +120,7 @@ public class FurnituresManager implements FurnituresManagerLocal {
 	public void generate(int nbToGenerate) {
 		while (nbToGenerate > 0) {
 			insertRandomFurniture();
-			
+
 			nbToGenerate--;
 		}
 	}
@@ -171,16 +131,16 @@ public class FurnituresManager implements FurnituresManagerLocal {
 		String word1 = words[random.nextInt(words.length)];
 		String word2 = words[random.nextInt(words.length)];
 		String word = word1 + word2;
-		
+
 		// Couleur et matériaux random
 		int colorId = random.nextInt(3) + 1;
 		int materialId = random.nextInt(4) + 1;
 		int categoryId = random.nextInt(5) + 1;
 		double price = random.nextInt(1500) + 1;
-		
+
 		//Ajout à la bdd
 		this.insertFurniture(word, materialId, categoryId, price, colorId);
-		
+
 	}
 
 	@Override
@@ -193,11 +153,10 @@ public class FurnituresManager implements FurnituresManagerLocal {
 							+ "'" + name + "',"
 							+ materialId + ","
 							+ categoryId + ","
-							+ price      + ","
-							+ colorId    + ")");
+							+ price + ","
+							+ colorId + ")");
 
 			boolean ok = statement.execute();
-					
 
 		} catch (SQLException ex) {
 			Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -211,4 +170,95 @@ public class FurnituresManager implements FurnituresManagerLocal {
 			}
 		}
 	}
+
+	@Override
+	public Furniture getFurnitureById(long id) {
+		Furniture furniture = null;
+
+		Connection connection = null;
+		try {
+			connection = dataSource.getConnection();
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM furnitures "
+					+ "INNER JOIN color ON colorID = color.id "
+					+ "INNER JOIN material ON materialID = material.id "
+					+ "INNER JOIN category ON categoryID = category.id "
+					+ "WHERE furnitures.id=" + id);
+
+			ResultSet results = statement.executeQuery();
+
+			results.next();  //On récupère l'enregistrement
+			String name = results.getString("name");
+			Color color = Color.getColor(results.getString("color.name"));
+			Material material = Material.valueOf(results.getString("material.name").toUpperCase());
+			Category category = Category.valueOf(results.getString("category.name").toUpperCase());
+			double price = results.getDouble("price");
+
+			furniture = new Furniture(id, name, category, material, color, price);
+
+		} catch (SQLException ex) {
+			Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+		return furniture;
+	}
+
+    @Override
+    public void updateFurniture(long id, String name, int materialId, int categoryId, double price, int colorId) {
+        Connection connection = null;
+		try {
+			connection = dataSource.getConnection();
+			PreparedStatement statement = connection
+					.prepareStatement("UPDATE furnitures SET "
+							+ "name = '" + name + "',"
+							+ "materialID = " + materialId + ","
+							+ "categoryID = " + categoryId + ","
+							+ "price = " + price + ","
+							+ "colorID = " + colorId + " "
+                                                        + "WHERE id = " + id + ";");
+
+			statement.execute();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+    }
+
+    @Override
+    public void deleteFurniture(long id) {
+        Connection connection = null;
+		try {
+			connection = dataSource.getConnection();
+			PreparedStatement statement = connection
+					.prepareStatement("DELETE FROM furnitures "
+							+ "WHERE id = " + id + ";");
+
+			statement.execute();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+    }
 }

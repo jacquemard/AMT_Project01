@@ -46,16 +46,23 @@ public class GeneratorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// On lance la génération
-		try {
-			int nbToGenerate = Integer.parseInt(request.getParameter("nb_elements"));
+                final int nbToGenerate = Integer.parseInt(request.getParameter("nb_elements"));
+                
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                                if (nbToGenerate < 2000000) { //Nombre max d'élément : 2 millions
+                                        furnitureManager.generate(nbToGenerate);
+                                }
 
-			if (nbToGenerate < 2000000) { //Nombre max d'élément : 2 millions
-				furnitureManager.generate(nbToGenerate);
-			}
-
-		} catch (NumberFormatException e) {
-			//On fait rien, l'utilisateur a entrée un nombre trop grand
-		}
+                        } catch (NumberFormatException e) {
+                                //On fait rien, l'utilisateur a entrée un nombre trop grand
+                        }
+                    }
+                    
+                }).start();
+		
 		request.getRequestDispatcher("/WEB-INF/generate.jsp").forward(request, response);
 	}
 }
