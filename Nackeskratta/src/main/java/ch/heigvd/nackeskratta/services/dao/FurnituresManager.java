@@ -1,9 +1,9 @@
 package ch.heigvd.nackeskratta.services.dao;
 
 import ch.heigvd.nackeskratta.model.Category;
+import ch.heigvd.nackeskratta.model.Color;
 import ch.heigvd.nackeskratta.model.Furniture;
 import ch.heigvd.nackeskratta.model.Material;
-import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -65,9 +65,9 @@ public class FurnituresManager implements FurnituresManagerLocal {
 			ResultSet results = statement.executeQuery();
 
 			while (results.next()) { //Pour chaque enregistrement
-                                long id = results.getLong("id");
+				long id = results.getLong("id");
 				String name = results.getString("name");
-				Color color = Color.getColor(results.getString("color.name"));
+				Color color = Color.valueOf(results.getString("color.name").toUpperCase());
 				Material material = Material.valueOf(results.getString("material.name").toUpperCase());
 				Category category = Category.valueOf(results.getString("category.name").toUpperCase());
 				double price = results.getDouble("price");
@@ -188,7 +188,7 @@ public class FurnituresManager implements FurnituresManagerLocal {
 
 			results.next();  //On récupère l'enregistrement
 			String name = results.getString("name");
-			Color color = Color.getColor(results.getString("color.name"));
+			Color color = Color.valueOf(results.getString("color.name").toUpperCase());
 			Material material = Material.valueOf(results.getString("material.name").toUpperCase());
 			Category category = Category.valueOf(results.getString("category.name").toUpperCase());
 			double price = results.getDouble("price");
@@ -209,9 +209,9 @@ public class FurnituresManager implements FurnituresManagerLocal {
 		return furniture;
 	}
 
-    @Override
-    public void updateFurniture(long id, String name, int materialId, int categoryId, double price, int colorId) {
-        Connection connection = null;
+	@Override
+	public void updateFurniture(long id, String name, int materialId, int categoryId, double price, int colorId) {
+		Connection connection = null;
 		try {
 			connection = dataSource.getConnection();
 			PreparedStatement statement = connection
@@ -221,7 +221,7 @@ public class FurnituresManager implements FurnituresManagerLocal {
 							+ "categoryID = " + categoryId + ","
 							+ "price = " + price + ","
 							+ "colorID = " + colorId + " "
-                                                        + "WHERE id = " + id + ";");
+							+ "WHERE id = " + id + ";");
 
 			statement.execute();
 
@@ -236,11 +236,11 @@ public class FurnituresManager implements FurnituresManagerLocal {
 				Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		}
-    }
+	}
 
-    @Override
-    public void deleteFurniture(long id) {
-        Connection connection = null;
+	@Override
+	public void deleteFurniture(long id) {
+		Connection connection = null;
 		try {
 			connection = dataSource.getConnection();
 			PreparedStatement statement = connection
@@ -260,5 +260,5 @@ public class FurnituresManager implements FurnituresManagerLocal {
 				Logger.getLogger(FurnituresManager.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		}
-    }
+	}
 }
