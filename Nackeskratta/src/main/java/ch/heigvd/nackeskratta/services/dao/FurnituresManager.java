@@ -60,6 +60,7 @@ public class FurnituresManager implements FurnituresManagerLocal {
 					+ "INNER JOIN color ON colorID = color.id "
 					+ "INNER JOIN material ON materialID = material.id "
 					+ "INNER JOIN category ON categoryID = category.id "
+					+ "ORDER BY furnitures.id DESC "
 					+ "LIMIT " + numberPerPage * page + ", " + numberPerPage);
 
 			ResultSet results = statement.executeQuery();
