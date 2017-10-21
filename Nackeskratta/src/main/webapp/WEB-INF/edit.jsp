@@ -19,7 +19,7 @@
         <div class="form-group">
 	    <div class="btn-group" data-toggle="buttons" id="category">
 		<label class="btn btn-secondary ${requestScope.furniture.category == 'BED' ? 'active' : ''} ">
-		    <input type="radio" name="category" id="cat_bed" autocomplete="off" value="1" 
+		    <input type="radio" name="category" id="cat_bed" autocomplete="off" value="3" 
 			   ${requestScope.furniture.category == 'BED' ? 'checked' : ''} > Bed
 		</label>
 		<label class="btn btn-secondary ${requestScope.furniture.category == 'CHAIR' ? 'active' : ''}">
@@ -27,7 +27,7 @@
 			   ${requestScope.furniture.category == 'CHAIR' ? 'checked' : ''} > Chair 
 		</label>
 		<label class="btn btn-secondary ${requestScope.furniture.category == 'TABLE' ? 'active' : ''}">
-		    <input type="radio" name="category" id="cat_table" autocomplete="off" value="3"
+		    <input type="radio" name="category" id="cat_table" autocomplete="off" value="5"
 			   ${requestScope.furniture.category == 'TABLE' ? 'checked' : ''}> Table
 		</label>
 		<label class="btn btn-secondary ${requestScope.furniture.category == 'CABINET' ? 'active' : ''}">
@@ -35,7 +35,7 @@
 			   ${requestScope.furniture.category == 'CABINET' ? 'checked' : ''} > Cabinet
 		</label>
 		<label class="btn btn-secondary ${requestScope.furniture.category == 'MEATBALLS' ? 'active' : ''}">
-		    <input type="radio" name="category" id="cat_meatball" autocomplete="off" value="5"
+		    <input type="radio" name="category" id="cat_meatball" autocomplete="off" value="1"
 			   ${requestScope.furniture.category == 'MEATBALLS' ? 'checked' : ''} > Meatball
 		</label>
 	    </div>

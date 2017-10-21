@@ -18,19 +18,19 @@
         <div class="form-group">
 	    <div class="btn-group" data-toggle="buttons" id="category">
 		<label class="btn btn-secondary active">
-		    <input type="radio" name="category" id="cat_bed" autocomplete="off" value="1" checked> Bed
+		    <input type="radio" name="category" id="cat_bed" autocomplete="off" value="3" checked> Bed
 		</label>
 		<label class="btn btn-secondary">
 		    <input type="radio" name="category" id="cat_chair" autocomplete="off" value="2"> Chair
 		</label>
 		<label class="btn btn-secondary">
-		    <input type="radio" name="category" id="cat_table" autocomplete="off" value="3"> Table
+		    <input type="radio" name="category" id="cat_table" autocomplete="off" value="5"> Table
 		</label>
 		<label class="btn btn-secondary">
 		    <input type="radio" name="category" id="cat_cabinet" autocomplete="off" value="4"> Cabinet
 		</label>
 		<label class="btn btn-secondary">
-		    <input type="radio" name="category" id="cat_meatball" autocomplete="off" value="5"> Meatball
+		    <input type="radio" name="category" id="cat_meatball" autocomplete="off" value="1"> Meatball
 		</label>
 	    </div>
         </div>
