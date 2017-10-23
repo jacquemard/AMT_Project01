@@ -20,15 +20,15 @@ Un design pattern multi-tiers MVC côté serveur a été utilisé. On peut trouv
 
 ![Files](/res/ProjectFiles.png)
 
-    - Sources (_src/main/java/ch/heigvd/Nackeskratta_)
-        - package _controllers_: endpoint de l'application, soit des servlets. Pour chaque requête, on utilisera les pages jsp présente dans WEB-INF. 
-        - package _model_ : modèles de la base de données. Furniture représente un meuble. Sa catégorie, sa couleur et son matériel sont représenté à l'aide de modèle enum.
-        - package _dao_ : les DAO de notre projet. Ici, il n'y en a qu'un, FurnituresManager. Celui-ci dialogue avec la datasource Ikea. On y exécute les requêtes SQL afin de récupérer la liste des meubles, insérer un nouveau meuble, etc.
+- Sources (_src/main/java/ch/heigvd/Nackeskratta_)
+ - package _controllers_: endpoint de l'application, soit des servlets. Pour chaque requête, on utilisera les pages jsp présente dans WEB-INF. 
+ - package _model_ : modèles de la base de données. Furniture représente un meuble. Sa catégorie, sa couleur et son matériel sont représenté à l'aide de modèle enum.
+ - package _dao_ : les DAO de notre projet. Ici, il n'y en a qu'un, FurnituresManager. Celui-ci dialogue avec la datasource Ikea. On y exécute les requêtes SQL afin de récupérer la liste des meubles, insérer un nouveau meuble, etc.
 
-    - Pages (_src/main/webapp_)
-        - furnitures.jsp : listes des meubles, soit la page d'accueil de l'application. Celle-ci attend dans le _requestScope_ une liste de Furniture (ajouté via le servlet FurnituresServlet), qu'elle affichera. 
-        - generate.jsp: permet de générer une liste de meuble. Le servlet associé accepte aussi les requêtes POST. Lorsqu'une telle requête arrive suite à une demande de génération de données, le servlet lance un thread en arrière plan qui génèrera les données afin de ne pas bloquer le serveur.
-        - insert.jsp: permet d'insérer un nouveau meuble. Le servlet associé accepte aussi les requêtes POST, appelé au submit depuis le formulaire d'insertion.
-        - edit.jsp: permet d'éditer un nouveau meuble. Le servlet associé accepte aussi les requêtes POST, appelé au submit depuis le formulaire d'édition. La page est pré-chargée avec les données du meuble à éditer. L'id du meuble à éditer est passé en paramètre de requête dans l'URL (edit?id=123)
+- Pages (_src/main/webapp_)
+ - furnitures.jsp : listes des meubles, soit la page d'accueil de l'application. Celle-ci attend dans le _requestScope_ une liste de Furniture (ajouté via le servlet FurnituresServlet), qu'elle affichera. 
+ - generate.jsp: permet de générer une liste de meuble. Le servlet associé accepte aussi les requêtes POST. Lorsqu'une telle requête arrive suite à une demande de génération de données, le servlet lance un thread en arrière plan qui génèrera les données afin de ne pas bloquer le serveur.
+ - insert.jsp: permet d'insérer un nouveau meuble. Le servlet associé accepte aussi les requêtes POST, appelé au submit depuis le formulaire d'insertion.
+ - edit.jsp: permet d'éditer un nouveau meuble. Le servlet associé accepte aussi les requêtes POST, appelé au submit depuis le formulaire d'édition. La page est pré-chargée avec les données du meuble à éditer. L'id du meuble à éditer est passé en paramètre de requête dans l'URL (edit?id=123)
 
 Notons qu'il n'y a pas de page _delete.jsp_, mais seulement un servlet _DeletionServlet_ mappé sur _/delete_. Ce endpoint efface le meuble, et redirige l'utilisateur sur la page d'accueil.
