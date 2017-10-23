@@ -10,7 +10,7 @@ Docker a été utilisé afin de pouvoir exécuter le serveur web facilement. 2 i
     - mysql: base de donnée de base de notre application. Les tables sont créées automatiquement au build grâce au fichier _docker/mysql/src/ikea.sql_.
     - wildfly: serveur web java EE de notre application. A l'instanciation de l'image docker, le .war (dans le dossier _docker/wildfly/data_) correspondant à notre application est automatiquement monté. Le fichier de configuration associé ainsi que le driver mysql sont aussi déployés.
 
-Afin d'exécuter notre application, il suffit de faire un _docker-compose up --build_ depuis le dossier _/docker_. Pour tester l'application, il faut se rendre sur http://<docker machine ip>:8080/Nackeskratta-1.0-SNAPSHOT, soit, par défaut, http://192.168.99.100:8080/Nackeskratta-1.0-SNAPSHOT
+Afin d'exécuter notre application, il suffit de faire un _docker-compose up --build_ depuis le dossier _/docker_. Pour tester l'application, il faut se rendre sur http://[docker machine ip]:8080/Nackeskratta-1.0-SNAPSHOT, soit, par défaut, http://192.168.99.100:8080/Nackeskratta-1.0-SNAPSHOT
 
 On arrive premièrement sur la page d'accueil listant les meubles, cependant, la base de donnée est pour le moment vide. Il est possible de générer un certain nombre de meuble grâce à la page de génération. On peut aussi insérer un nouveau meuble grâce à la page d'insertion. Afin d'éditer un meuble, il suffit de cliquer sur son nom depuis la page d'accueil, accessible via le bouton 'home' du haut. La page d'édition permet aussi de supprimer le meuble courant.
 
@@ -32,8 +32,3 @@ Un design pattern multi-tiers MVC côté serveur a été utilisé. On peut trouv
         - edit.jsp: permet d'éditer un nouveau meuble. Le servlet associé accepte aussi les requêtes POST, appelé au submit depuis le formulaire d'édition. La page est pré-chargée avec les données du meuble à éditer. L'id du meuble à éditer est passé en paramètre de requête dans l'URL (edit?id=123)
 
 Notons qu'il n'y a pas de page _delete.jsp_, mais seulement un servlet _DeletionServlet_ mappé sur _/delete_. Ce endpoint efface le meuble, et redirige l'utilisateur sur la page d'accueil.
-
-
-## Build
-
-    TODOOOOO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Ou ce n'est peut être pas important ?
